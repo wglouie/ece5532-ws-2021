@@ -18,5 +18,6 @@ gtest/*
 *.pdf
 map.pgm
 *.kdev4
+*.vscode
 build/
 devel/
