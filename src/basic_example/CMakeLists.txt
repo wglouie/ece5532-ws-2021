@@ -23,3 +23,16 @@ target_link_libraries(service_advertiser ${catkin_LIBRARIES})
 add_executable(service_client src/service_client.cpp)
 add_dependencies(service_client ${PROJECT_NAME}_gencpp)
 target_link_libraries(service_client ${catkin_LIBRARIES})
+
+add_executable(namespace_example src/namespace_example.cpp)
+target_link_libraries(namespace_example ${catkin_LIBRARIES})
+
+add_executable(time_example src/time_example.cpp)
+target_link_libraries(time_example ${catkin_LIBRARIES})
+
+add_executable(message_stamped src/message_stamped.cpp)
+target_link_libraries(message_stamped ${catkin_LIBRARIES})
+
+add_executable(timer_example src/timer_example.cpp)
+target_link_libraries(timer_example ${catkin_LIBRARIES})
+

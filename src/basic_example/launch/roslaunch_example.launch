@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="basic_example" type="namespace_example" name="namespace_example_text" />
+
+  <node pkg="basic_example" type="time_example" name="time_test" output="screen" />
+
+  <node pkg="basic_example" type="time_example" name="time_test" output="screen" />
+
+</launch>
