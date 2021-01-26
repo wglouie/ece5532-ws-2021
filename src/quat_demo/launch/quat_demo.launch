@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="quat_demo" type="quat_demo" name="quat_demo" output="screen" />
+  <node pkg="rviz" type="rviz" name="quat_demo_viz" args="-d $(find quat_demo)/rviz/rviz_config.rviz" respawn="true" />
+  <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="reconfig" />
+</launch>
