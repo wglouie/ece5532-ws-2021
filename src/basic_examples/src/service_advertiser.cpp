@@ -1,7 +1,7 @@
 #include <ros/ros.h>
-#include <basic_example/Adder.h>
+#include <basic_examples/Adder.h>
 
-bool serviceCallback(basic_example::Adder::Request& req, basic_example::Adder::Response& res){
+bool serviceCallback(basic_examples::Adder::Request& req, basic_examples::Adder::Response& res){
   res.result = req.value1 + req.value2;
   return true;
 }

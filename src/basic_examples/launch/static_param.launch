@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+  <param name="p1" value="1"/>
+  <param name="p2" value="2"/>
+
+  <node pkg="basic_examples" type="static_param_example" name="static_param_example" output="screen">
+    <param name="p3" value="5"/>
+  </node>
+
+
+</launch>
