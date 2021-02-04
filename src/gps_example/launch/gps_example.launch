@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find ugv_course_launch)/launch/audibot_sim_project.launch"/>
+
+  <node ns="audibot" pkg="audibot_twist_controller" type="audibot_twist_node" name="audibot_twist_node" />
+
+  <node pkg="gps_example" type="gps_example" name="gps_example" output="screen"/>
+
+
+</launch>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gps_example</name>
+  <version>0.0.0</version>
+  <description>
+    Description of package
+  </description>
+  <maintainer email="abc@todo.todo">abc</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>tf</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>ugv_course_libs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <export>
+  </export>
+</package>
