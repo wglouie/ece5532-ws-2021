@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node pkg="dead_reckoning" type="dead_reckoning" name="dead_reckoning_1" output="screen">
+    <param name="child_frame" value="frame_2" />
+    <param name="parent_frame" value="frame_1" />    
+  </node>
+
+  <node pkg="dead_reckoning" type="dead_reckoning" name="dead_reckoning_2" output="screen">
+    <param name="child_frame" value="frame_3" />
+    <param name="parent_frame" value="frame_1" />    
+  </node>
+</launch>

@@ -45,5 +45,9 @@ int main(int argc, char** argv){
   LatLon ref_coords_lat_lon(ref_lat, ref_lon, 0);
   ref_coords = UTMCoords(ref_coords_lat_lon);
 
+  double central_meridian = ref_coords.getCentralMeridian();
+
+  ROS_INFO("Central Meridian of the Reference Cooridinate: %f", central_meridian);
+  
   ros::spin();
 }
