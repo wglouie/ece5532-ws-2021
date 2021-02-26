@@ -1,0 +1,31 @@
+global_frame: map
+robot_base_frame: roundbot/base_footprint
+robot_radius: 0.5
+ # m
+transform_tolerance: 0.2 # secs
+update_frequency: 5.0 # Hz
+publish_frequency: 2.0 # Hz
+rolling_window: true
+width: 20 # m
+height: 20 # m
+resolution: 0.05 # m
+
+plugins:
+  - {name: obstacles, type: "costmap_2d::ObstacleLayer"}
+  - {name: inflation, type: "costmap_2d::InflationLayer"}
+
+obstacles:
+  obstacle_range: 2.5
+  raytrace_range: 3.0
+
+  observation_sources: lidar_scan
+  lidar_scan:
+    topic: /roundbot/laser_front/scan
+    sensor_frame: roundbot/laser_front
+    data_type: LaserScan
+    marking: true
+    clearing: true
+
+inflation:
+  inflation_radius: 1.1
+  cost_scaling_factor: 0.2

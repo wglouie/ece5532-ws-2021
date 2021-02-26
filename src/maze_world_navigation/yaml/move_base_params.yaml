@@ -1,0 +1,8 @@
+base_global_planner: navfn/NavfnROS
+#base_local_planner: base_local_planner/TrajectoryPlannerROS
+base_local_planner: roundbot_local_planner/RoundbotLocalPlanner
+recovery_behaviors: []
+controller_frequency: 20.0
+recovery_behavior_enabled: true
+clearing_rotation_allowed: false
+planner_frequency: 2.0

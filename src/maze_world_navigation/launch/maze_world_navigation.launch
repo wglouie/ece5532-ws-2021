@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find ugv_course_launch)/launch/roundbot_nav_sim_gazebo.launch" />
+
+  <node pkg="move_base" type="move_base" name="move_base">
+    <rosparam ns="global_costmap" file="$(find maze_world_navigation)/yaml/global_costmap_params.yaml"/>
+    <rosparam ns="local_costmap" file="$(find maze_world_navigation)/yaml/local_costmap_params.yaml"/>
+    <rosparam ns="NavfnROS" file="$(find maze_world_navigation)/yaml/global_planner_params.yaml"/>
+    <rosparam ns="TrajectoryPlannerROS" file="$(find maze_world_navigation)/yaml/local_planner_params.yaml"/> 
+    <rosparam file="$(find maze_world_navigation)/yaml/move_base_params.yaml"/> 
+    <remap from="cmd_vel" to="/roundbot/cmd_vel" />
+ </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="world_to_map" args="0 0 0 0 0 0 world map 30" />
+  <node ns="roundbot" pkg="roundbot_twist_controller" type="roundbot_twist_control" name="roundbot_twist_control" />
+</launch>
