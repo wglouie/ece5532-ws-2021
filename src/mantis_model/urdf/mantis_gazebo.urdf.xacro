@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="mantis_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <gazebo>
+    <plugin name="pose_plugin" filename="libugv_course_gazebo_plugins_pose.so">
+      <pub_tf>1</pub_tf>
+      <tf_prefix>mantis</tf_prefix>
+    </plugin>
+  </gazebo>
+  
+  <gazebo reference="left_wheel" >
+    <mu1>3.0</mu1>
+    <mu2>3.0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="right_wheel" >
+    <mu1>3.0</mu1>
+    <mu2>3.0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="fl_caster" >
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+ 
+  <gazebo reference="fr_caster" >
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="rl_caster" >
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+ 
+  <gazebo reference="rr_caster" >
+    <mu1>0</mu1>
+    <mu2>0</mu2>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
+  <gazebo reference="body_link" >
+    <mu1>1.0 </mu1>
+    <mu2>1.0 </mu2>
+    <material>Gazebo/Green</material>
+  </gazebo>
+  
+
+</robot>
+  
+ 

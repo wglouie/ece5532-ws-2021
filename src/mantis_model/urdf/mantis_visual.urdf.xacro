@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot name="mantis_visual" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <xacro:property name="front_caster_x" value="0.36" />
+  <xacro:property name="front_caster_y" value="0.275" />
+  <xacro:property name="rear_caster_x" value="-0.435" />
+  <xacro:property name="rear_caster_y" value="0.105" />
+  <xacro:property name="frame_height" value="0.18" />
+  <xacro:property name="wheel_radius" value="0.165" />
+  <xacro:property name="caster_radius" value="0.08" />
+  <xacro:property name="drive_wheel_offset" value="0.29" />
+
+  <xacro:macro name="drive_wheel" params="name y_offset" >
+    <link name="${name}_wheel" >
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="${wheel_radius}"/>
+        </geometry>
+        <material name="dark_gray"/>
+      </visual>
+      <visual>
+        <geometry>
+          <box size="0.02 0.1 0.07"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+      <visual>
+        <geometry>
+          <box size="0.01 0.2 0.07"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+
+    <joint name="${name}_wheel_joint" type="continuous" >
+      <parent link="body_link" />
+      <child link="${name}_wheel" />
+      <origin xyz="0 ${y_offset} 0" rpy="-1.5707 0 0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1000.0" velocity="50.0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="caster_wheel" params="name x_offset y_offset" >
+    <link name="${name}_caster" >
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="${caster_radius}"/>
+        </geometry>
+        <material name="dark_gray"/>
+      </visual>
+    </link>
+
+    <joint name="${name}_caster_joint" type="fixed" >
+      <parent link="body_link" />
+      <child link="${name}_caster" />
+      <origin xyz="${x_offset} ${y_offset} ${-(wheel_radius-caster_radius)}" rpy="-1.5707 0 0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:drive_wheel name="left" y_offset="${drive_wheel_offset}" />
+  <xacro:drive_wheel name="right" y_offset="${-drive_wheel_offset}" />
+  <xacro:caster_wheel name="fl" x_offset="${front_caster_x}" y_offset="${front_caster_y}" />
+  <xacro:caster_wheel name="fr" x_offset="${front_caster_x}" y_offset="${-front_caster_y}" />
+  <xacro:caster_wheel name="rl" x_offset="${rear_caster_x}" y_offset="${rear_caster_y}" />
+  <xacro:caster_wheel name="rr" x_offset="${rear_caster_x}" y_offset="${-rear_caster_y}" />
+
+  <link name="base_footprint" >
+  </link>
+
+  <link name="body_link" >
+    <visual>
+      <origin xyx="0 0 0" rpy="0 0 0" /> 
+      <geometry>
+        <mesh filename="package://mantis_model/meshes/mantis_base.stl" scale="1 1 1" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    
+    <visual>
+      <origin xyz="0 0 ${frame_height}" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://mantis_model/meshes/mantis_frame.stl" scale="1 1 1" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    
+    <visual>
+      <origin xyz="0 0 ${frame_height}" rpy="0 0 0" />
+      <geometry>
+        <box size="0.5 0.6 0.0127"/>
+      </geometry>
+      <material name="gray" />      
+    </visual>
+  </link>
+
+  <joint name="base_joint" type="fixed" >
+    <parent link="base_footprint" />
+    <child link="body_link" />
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+  </joint>
+
+  <material name="gray" >
+    <color rgba="0.4 0.4 0.4 1.0" />
+  </material>
+
+  <material name="dark_gray" >
+    <color rgba="0.1 0.1 0.1 1.0" />
+  </material>
+  
+  <material name="red" >
+    <color rgba="1 0 0 1.0" />
+  </material>
+
+
+</robot>

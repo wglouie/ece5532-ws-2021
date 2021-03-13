@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>  
+  <group ns="mantis">
+    <rosparam file="$(find mantis_model)/yaml/roscontrol_params.yaml" />
+
+  <!-- Parse the URDF model and store the result in the 'robot_description' parameter -->
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find mantis_model)/urdf/mantis.urdf.xacro'" />
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_mantis" args="-urdf -param robot_description -model mantis "/>
+    
+    <node pkg="controller_manager" type="spawner" name="controller_spawner" args="joint_state_controller left_wheel_controller right_wheel_controller" />
+
+
+    <!-- This node loads the 'robot_description' parameter, subscribes to the 'joint_states' topic,
+         and publishes TF transforms for the robot's joints -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="tf_prefix" value="mantis" />
+    </node>
+    <!--node pkg="mantis_model" type="mantis_joint_pub" name="mantis_joint_pub" /-->
+  </group>  
+</launch>
