@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<robot>
+
+  <!-- Run the roscontrol plugin for Gazebo -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/mantis</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- Simulated motor controller for the left wheel -->
+  <transmission name="left_control">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_joint" >
+      <hardwareInterface>hardware_interface/VelocityJointInterface </hardwareInterface>
+    </joint>
+    <actuator name="left_wheel_actuator">
+      <hardwareInterface>EffortJointInterface </hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- Simulated motor controller for the right wheel -->
+  <transmission name="right_control">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_joint" >
+      <hardwareInterface>hardware_interface/VelocityJointInterface </hardwareInterface>
+    </joint>
+    <actuator name="right_wheel_actuator">
+      <hardwareInterface>EffortJointInterface </hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+</robot>

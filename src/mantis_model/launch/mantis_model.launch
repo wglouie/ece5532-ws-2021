@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>  
+  <!-- Parse the URDF model and store the result in the 'robot_description' parameter -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find mantis_model)/urdf/mantis_visual.urdf.xacro'" />
+
+  <!-- This node loads the 'robot_description' parameter, subscribes to the 'joint_states' topic,
+       and publishes TF transforms for the robot's joints -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+  <node pkg="mantis_model" type="mantis_joint_pub" name="mantis_joint_pub" />
+  
+</launch>

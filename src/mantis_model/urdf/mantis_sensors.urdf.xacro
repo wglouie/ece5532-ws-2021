@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="mantis_sensors" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <xacro:include filename="$(find ugv_course_sensor_description)/urdf/hokuyo_utm_30.urdf.xacro" />  
+  <xacro:include filename="$(find ugv_course_sensor_description)/urdf/audibot_camera.urdf.xacro" />    
+  <xacro:hokuyo_utm_30 name="laser" parent_frame="body_link" x="0.17" y="0.0" z="0.22" roll="0" pitch="0" yaw="0" />
+  <xacro:audibot_camera name="camera" parent_link="body_link" x="-0.15" y="0.0" z="1.5" roll="0" pitch="0.5" yaw="0" />
+</robot>
