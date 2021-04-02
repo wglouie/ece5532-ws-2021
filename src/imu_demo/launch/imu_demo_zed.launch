@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find zed_wrapper)/launch/zed.launch" />
+  
+  <node pkg="imu_demo" type="imu_to_tf.py" name="imu_to_tf" >
+    <param name="child_frame" value="camera_link" />
+    <param name="parent_frame" value="map" />
+  </node>
+  
+  <node pkg="rviz" type="rviz" name="imu_demo_viz" respawn="true" args="-d $(find imu_demo)/rviz/imu_demo.rviz" />
+  
+</launch> 

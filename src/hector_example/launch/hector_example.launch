@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+  <arg name="load_map" value="true" />
+  
+  <include file="$(find ugv_course_launch)/launch/roundbot_mapping_sim_gazebo.launch" />
+  
+  <node unless="$(arg load_map)" pkg="hector_mapping" type="hector_mapping" name="hector_mapping">
+    <rosparam file="$(find hector_example)/yaml/hector_params_gazebo.yaml" />
+    <remap from="scan" to="/roundbot/laser_front/scan"/>
+  </node>
+  
+  <node if="$(arg load_map)" pkg="amcl" type="amcl" name="amcl" >
+    <rosparam file="$(find hector_example)/yaml/amcl_params_gazebo.yaml" />
+    <remap from="scan" to="/roundbot/laser_front/scan" />
+  </node>
+  
+  
+  <node if="$(arg load_map)" pkg="map_server" type="map_server" name="map_server" args="$(find hector_example)/map.yaml"/>
+  
+  <node ns="roundbot" pkg="dead_reckoning" type="dead_reckoning" name="dead_reckoning" >
+    <param name="parent_frame" value="odom" />
+    <param name="child_frame" value="roundbot/base_footprint" />
+  </node>  
+  
+  <node pkg="move_base" type="move_base" name="move_base">
+    <rosparam unless="$(arg load_map)" ns="global_costmap" file="$(find maze_world_navigation)/yaml/global_costmap_params.yaml" />
+    <rosparam if="$(arg load_map)" ns="global_costmap" file="$(find maze_world_navigation)/yaml/global_costmap_mapping_params.yaml" />
+    <rosparam ns="local_costmap" file="$(find maze_world_navigation)/yaml/local_costmap_params.yaml" />
+    <rosparam ns="NavfnROS" file="$(find maze_world_navigation)/yaml/global_planner_params.yaml" />
+    <rosparam ns="TrajectoryPlannerROS" file="$(find maze_world_navigation)/yaml/local_planner_params.yaml" />
+    <rosparam file="$(find maze_world_navigation)/yaml/move_base_params.yaml" />
+    <remap from="cmd_vel" to="/roundbot/cmd_vel" />
+  </node>
+  
+  <node ns="roundbot" pkg="roundbot_twist_controller" type="roundbot_twist_control" name="roundbot_twist_control" />
+  
+
+</launch>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find freenect_launch)/launch/freenect.launch" />
+
+  <node pkg="imu_demo" type="razor_imu_driver.py" name="razor_imu" output="screen" />
+
+  <node pkg="imu_demo" type="imu_to_tf_razor.py" name="imu_to_tf_razor" >
+    <param name="child_frame" value="imu" />
+    <param name="parent_frame" value="map" />
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="imu_2_temp_link" args="0 0 0 0 0 0 imu camera_link 30" /> 
+
+<!--
+  <node pkg="tf" type="static_transform_publisher" name="imu_2_temp_link" args="0 0 0 0 -3.14 0 imu temp 30" /> 
+  <node pkg="tf" type="static_transform_publisher" name="temp_2_camera_link" args="0 0 0 -1.5707 0 0 temp camera_link 30" /> 
+-->
+
+  <node pkg="rviz" type="rviz" name="imu_demo_viz" respawn="true" args="-d $(find imu_demo)/rviz/imu_demo_razor.rviz" />
+
+</launch>

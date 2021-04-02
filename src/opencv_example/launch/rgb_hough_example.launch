@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="opencv_example" type="rgb_hough_node" name="rgb_hough" output="screen" >
+    <remap from="image_in" to="/raw_image" />
+  </node>
+
+  <!-- Decompress image from bag file -->
+  <node pkg="image_transport" type="republish" name="republish" args="in:=/image compressed out:=/raw_image" />
+</launch>

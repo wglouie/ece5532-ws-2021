@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="imu_demo" type="imu_to_tf_razor.py" name="imu_to_tf_razor" >
+    <param name="child_frame" value="imu" />
+    <param name="parent_frame" value="map" />
+  </node>
+
+  <node pkg="rviz" type="rviz" name="imu_demo_viz" respawn="true" args="-d $(find imu_demo)/rviz/imu_demo_razor.rviz" />
+</launch>
